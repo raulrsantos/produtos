@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Products;
+use App\Http\Controllers\Products as Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,19 @@ use App\Http\Livewire\Products;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [Product::class, 'home']);
+Route::get('/{product}', [Product::class, 'detail']);
+
+// Route::get('/', function () {
+//     return view('produtos/home');
+// });
+
+// Route::get('/{product}', function () {
+//     return view('produtos/detail');
+// });
+
+
 
 //Orienta sobre qual código de verificação vai utilizar
 Route::middleware([
@@ -33,5 +44,6 @@ Route::middleware([
     Route::get('/products', Products::class)->name('products');
 
 });
+
 
 
